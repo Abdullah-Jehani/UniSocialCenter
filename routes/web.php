@@ -16,5 +16,5 @@ Route::get('/', [postController::class, 'index'])->name('post.index');
 Route::get('/posts/{post}', [postController::class, 'show'])->name('post.show');
 Route::get('/posts/{post}/edit', [postController::class, 'edit'])->name('post.edit');
 Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
-
 Route::post('/post/store', [postController::class, 'store'])->name('post.store');
+Route::post('/post/{post}', [postController::class, 'destroy'])->name('post.destroy');

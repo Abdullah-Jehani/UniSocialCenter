@@ -48,10 +48,9 @@ class postController extends Controller
         $post = post::find($id);
         return view('show', compact('post',));
     }
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $post = post::find($id);
         $post->delete();
-        return redirect('/');
+        return redirect('/')->with('success', 'Post deleted successfully.');
     }
 }

@@ -13,6 +13,12 @@
                     <h4 class="card-text ">{{ $post->content }}</h4>
                     <hr>
                     <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary">Edit Post</a>
+
+                    <form action="{{ route('post.destroy', $post) }}" method="POST" style="display: inline-block;">
+                        @csrf
+                        @method('POST')
+                        <button type="submit" class="btn btn-danger">Delete Post</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -25,9 +25,9 @@
         <div class="col">
             <div class="row">
                 @if ($posts->count() == 0)
-                <div class="p-4">
-
-                    <h1>there is no posts yet.</h1>
+                <div class=" shadow-md rounded-lg p-6 text-center">
+                    <h1 class="text-2xl font-bold text-gray-800 mb-4">There are no posts yet.</h1>
+                    <p class="text-gray-600 text-lg">Be the first to create a new post.</p>
                 </div>
                 @endif
 

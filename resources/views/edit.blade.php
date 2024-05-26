@@ -11,19 +11,17 @@
                         @method('PUT')
                         <div class="form-group">
                             <label for="content">Content</label>
-
                             <textarea class="form-control" id="content" name="content" rows="3">{{ $post->content }}</textarea>
                             @error('content')
                             <div class="text-danger">
                                 {{ $message }}
                             </div>
-
                             @enderror
                         </div>
                         <div class="mt-4">
                             <button type="submit" class="btn btn-primary">Update Post</button>
-                        </div>
 
+                        </div>
                     </form>
                 </div>
             </div>
