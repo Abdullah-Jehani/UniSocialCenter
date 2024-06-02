@@ -36,7 +36,7 @@
 
                 <div class="card mb-2">
                     <div class="card-body">
-                        <h5 class="card-title">Abdullah Jehani</h5>
+                        <h5 class="card-title">{{Auth()->user()::$name()}}</h5>
                         <p class="card-text">{{ $post->content }}</p>
                         <hr>
                         <a href="#" class="btn btn-primary">LIKE</a>

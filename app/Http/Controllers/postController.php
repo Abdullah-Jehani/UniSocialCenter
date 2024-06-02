@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use function Laravel\Prompts\alert;
@@ -12,7 +13,8 @@ class postController extends Controller
     public function index()
     {
         $posts = post::orderBy('created_at', 'desc')->get();
-        return view('main', compact('posts'));
+        $user = User::get();
+        return view('main', compact(['posts', 'user']));
     }
     public function create()
     {
