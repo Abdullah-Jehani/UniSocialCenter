@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\post;
-use App\Models\User;
 use Illuminate\Http\Request;
 
-use function Laravel\Prompts\alert;
 
 class postController extends Controller
 {
     public function index()
     {
-        $posts = post::orderBy('created_at', 'desc')->get();
-        $user = User::get();
-        return view('main', compact(['posts', 'user']));
+        $posts = post::with('user', 'likes', 'comments')->orderBy('created_at', 'desc')->get();
+        $commentuser = Comment::with('commentuser')->get();
+        return view('main', compact(['posts']));
     }
     public function create()
     {
@@ -33,6 +32,7 @@ class postController extends Controller
     }
     public function edit(post $post)
     {
+
         return view('edit', compact('post'));
     }
     public function store(Request $request)
@@ -41,14 +41,19 @@ class postController extends Controller
             'content' => ['min:3 , required', 'max:255']
         ]);
         post::create(
-            ['content' => $request->content],
+            [
+                'content' => $request->content,
+                'user_id' => auth()->user()->id
+
+            ],
         );
         return redirect('/');
     }
     public function show($id)
     {
-        $post = post::find($id);
-        return view('show', compact('post',));
+        $post = Post::with('user', 'likes', 'comments')->find($id);
+        $commentuser = Comment::with('commentuser')->get();
+        return view('show', compact(['post', 'commentuser']));
     }
     public function destroy(Post $post)
     {
